@@ -1,0 +1,9 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  color: #222;
+  padding: 2rem;
+}
+h1 {
+  color: #0069bb; /* IF Blue */
+}
