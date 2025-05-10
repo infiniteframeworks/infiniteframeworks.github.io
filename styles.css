@@ -38,8 +38,8 @@ a:hover {
 }
 
 .logo {
-  margin:0 auto;
-  width:200px;
+  margin: 0 auto;
+  width: 200px;
 }
 
 .nav {
@@ -97,7 +97,7 @@ a:hover {
   pointer-events: none;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.8) 80%);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.8) 80%);
   mix-blend-mode: lighten;
   transition: background-position 0.05s;
 }
@@ -108,16 +108,15 @@ a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    130deg,
-    rgba(255, 0, 150, 0.3),
-    rgba(255, 255, 0, 0.3),
-    rgba(0, 255, 255, 0.3),
-    rgba(0, 255, 150, 0.3),
-    rgba(255, 0, 255, 0.3)
-  );
+  background: linear-gradient(130deg,
+      rgba(255, 0, 150, 0.3),
+      rgba(255, 255, 0, 0.3),
+      rgba(0, 255, 255, 0.3),
+      rgba(0, 255, 150, 0.3),
+      rgba(255, 0, 255, 0.3));
   background-size: 400% 400%;
-  animation: shimmerPulse 20s ease-in-out infinite;
+  background-position: 50% 50%;
+  transition: background-position 0.2s ease;
   mix-blend-mode: lighten;
   pointer-events: none;
   z-index: 1;
@@ -127,9 +126,11 @@ a:hover {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -167,7 +168,8 @@ section li {
   font-size: 1.1rem;
 }
 
-.about p, .contact p {
+.about p,
+.contact p {
   max-width: 700px;
   margin: auto;
   font-size: 1.05rem;
@@ -198,6 +200,7 @@ section li {
   .hero h1 {
     font-size: 3rem;
   }
+
   .hamburger {
     display: block;
   }
@@ -223,4 +226,3 @@ section li {
     align-items: flex-start;
   }
 }
-
