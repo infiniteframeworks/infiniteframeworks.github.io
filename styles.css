@@ -71,7 +71,7 @@ a:hover {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 4rem 1rem;
+  padding: 2rem 1rem;
   background: linear-gradient(135deg, #0069bb 0%, #1b87d2 100%);
   color: white;
   position: relative;
