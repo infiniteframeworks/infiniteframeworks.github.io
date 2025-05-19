@@ -14,14 +14,5 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('nav').classList.toggle('open');
   });
 
-  const shimmer = document.querySelector('.shimmer-overlay');
-
-
-  document.querySelector('.hero').addEventListener('mousemove', e => {
-    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - left) / width;
-    const y = (e.clientY - top) / height;
-    shimmer.style.backgroundPosition = `${40 + x * 20}% ${40 + y * 20}%`;
-  });
 
 });
