@@ -30,7 +30,7 @@ a:hover {
   align-items: center;
   padding: 1rem 0;
   border-bottom: 2px solid #e0e0e0;
-  position: sticky;
+  
   top: 0;
   width: 100%;
   background-color: #f9f9fb;
@@ -187,6 +187,7 @@ section li {
 
   .header {
     display: flex;
+    position: sticky;
     flex-direction: column;
     align-items: flex-start;
   }
