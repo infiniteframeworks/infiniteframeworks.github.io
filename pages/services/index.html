@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+  <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="/styles.css" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
@@ -16,11 +16,13 @@
   gtag('config', 'G-YZD6DZQ9VT');
 </script>
 <script src="/script.js" defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Explore the website development and digital consulting services offered by Infinite Frameworks." />
-  <title>Services | Infinite Frameworks</title>
+  <title>Services · Infinite Frameworks</title>
 </head>
 <body>
-
+  
   <header class="header">
     <a href="/">
       <img src="/logo.png" alt="Infinite Frameworks Logo" class="logo" title="Infinite Frameworks" />
@@ -37,47 +39,109 @@
     </nav>
     
   </header>
-  <section class="hero">
-    <div class="spotlight"></div>
-    <div class="shimmer-overlay"></div>
-    <h1>Services That Drive Results</h1>
-    <p>Thoughtful Design, Clean Code, and Smart Strategy</p>
+
+  <section class="hero" aria-labelledby="services-hero-title">
+    <div class="spotlight" aria-hidden="true"></div>
+    <div class="shimmer-overlay" aria-hidden="true"></div>
+
+    <div class="hero-inner container">
+      <h1 id="services-hero-title">Services That Drive Results</h1>
+      <p class="hero-tagline">
+        Thoughtful design, clean code, and smart strategy — all working together to support real business outcomes.
+      </p>
+    </div>
   </section>
 
   <section class="service-list">
-    <h2>Core Services</h2>
-    <ul>
-      <li>
-        <strong>Custom Website Development</strong><br />
-        Mobile-first, performance-optimized websites tailored to your brand and business goals.
-      </li>
-      <li>
-        <strong>e-Commerce</strong><br />
-        From product pages to checkout flows, every element is crafted to turn visitors into buyers. Backed by 20+ years of experience in online sales.
-      </li>
-      <li>
-        <strong>SEO & Analytics Integration</strong><br />
-        Improve visibility, track user behavior, and make confident, data-driven decisions.
-      </li>
-      <li>
-        <strong>Technical Consulting</strong><br />
-        Cut through complexity. Find the right tools, automate what you can, and remove friction from your workflows.
-      </li>
-    </ul>
+    <div class="container">
+      <h2>Core Services</h2>
+      <p class="section-intro">
+        Every engagement blends strategy, execution, and measurement. The goal isn&rsquo;t just to launch something new,
+        but to build systems that stay useful long after the first release.
+      </p>
+
+      <ul class="service-grid">
+        <li class="service-card">
+          <h3>Custom Website Development</h3>
+          <p class="service-tagline">Mobile-first, performance-optimized, and built to last.</p>
+          <p>
+            Mobile-first, performance-optimized websites tailored to your brand and business goals. 
+            Clear structure, accessible patterns, and interfaces that feel intuitive on any device.
+          </p>
+        </li>
+
+        <li class="service-card">
+          <h3>e-Commerce</h3>
+          <p class="service-tagline">From first click to checkout — designed for conversion.</p>
+          <p>
+            From product pages to checkout flows, every element is crafted to turn visitors into buyers.
+            Backed by 20+ years of experience in online sales, with attention to both UX and operations.
+          </p>
+        </li>
+
+        <li class="service-card">
+          <h3>SEO &amp; Analytics Integration</h3>
+          <p class="service-tagline">Get found. Learn what&rsquo;s working. Adjust with confidence.</p>
+          <p>
+            Improve visibility, track user behavior, and make confident, data-driven decisions. 
+            Technical SEO, structured content, and analytics that go beyond vanity metrics.
+          </p>
+        </li>
+
+        <li class="service-card">
+          <h3>Technical Consulting</h3>
+          <p class="service-tagline">Cut through complexity and focus on what matters.</p>
+          <p>
+            Cut through complexity. Find the right tools, automate what you can, and remove friction from your workflows.
+            From platform choices to integration strategy, the work stays grounded in your reality.
+          </p>
+        </li>
+      </ul>
+    </div>
   </section>
 
   <section class="process">
-    <h2>A Practical Approach to Digital</h2>
-    <p>Every project starts with a conversation—what&rsquo;s working, what isn&rsquo;t, and what needs to happen next. From there, it&rsquo;s a cycle of planning, building, testing, and refining—all in collaboration with you.</p>
+    <div class="container">
+      <h2>A Practical Approach to Digital</h2>
+      <p>
+        Every project starts with a conversation &mdash; what&rsquo;s working, what isn&rsquo;t, and what needs to happen next.
+        From there, it&rsquo;s a cycle of planning, building, testing, and refining &mdash; all in collaboration with you.
+      </p>
+
+      <ol class="process-steps">
+        <li>
+          <strong>Discover</strong>
+          <span>Clarify goals, constraints, and the real-world context your solution has to live in.</span>
+        </li>
+        <li>
+          <strong>Design &amp; Plan</strong>
+          <span>Map the architecture, content, and user flows so everyone knows what we&rsquo;re building.</span>
+        </li>
+        <li>
+          <strong>Build</strong>
+          <span>Turn the plan into working software &mdash; clean code, documented decisions, thoughtful details.</span>
+        </li>
+        <li>
+          <strong>Refine</strong>
+          <span>Measure, adjust, and iterate based on real usage, not just assumptions.</span>
+        </li>
+      </ol>
+    </div>
   </section>
 
   <section class="cta">
-    <h2>Ready When You Are</h2>
-    <p>Have a project in mind? Need a fresh perspective? Let&rsquo;s figure it out together.</p>
-    <p><a href="mailto:hello@infiniteframeworks.com">hello@infiniteframeworks.com</a></p>
+    <div class="container">
+      <h2>Ready When You Are</h2>
+      <p>
+        Have a project in mind? Need a fresh perspective? Let&rsquo;s figure it out together.
+      </p>
+      <p>
+        <a href="mailto:hello@infiniteframeworks.com">hello@infiniteframeworks.com</a>
+      </p>
+    </div>
   </section>
 
-  <footer class="footer">
+    <footer class="footer">
     <p>&copy; 2025 Infinite Frameworks, LLC. All rights reserved.</p>
   </footer>
 </body>
