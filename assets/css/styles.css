@@ -488,6 +488,74 @@ section h2 {
   }
 }
 
+/* Holdco Practices Section
+   ======================== */
+
+.practices {
+  padding: 4rem 1.5rem 5rem;
+}
+
+.practice-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.practice-card {
+  display: block;
+  padding: 1.5rem 1.75rem;
+  border-radius: var(--if-radius-lg);
+  border: 1px solid var(--if-border-subtle);
+  background-color: var(--if-surface);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+  color: var(--if-text-main);
+  text-decoration: none;
+  transition:
+    transform var(--if-transition-med),
+    box-shadow var(--if-transition-med),
+    border-color var(--if-transition-fast);
+}
+
+.practice-card strong {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--if-blue);
+  margin-bottom: 0.3rem;
+  font-family: 'SF Mono', 'Fira Code', ui-monospace, monospace;
+  font-weight: 600;
+}
+
+.practice-card span {
+  font-size: 0.97rem;
+  color: var(--if-text-muted);
+  line-height: 1.5;
+}
+
+.practice-card:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.12);
+  border-color: rgba(37, 99, 235, 0.35);
+}
+
+.practices-subhead {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--if-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .practices {
+    padding: 3rem 1.25rem 4rem;
+  }
+}
+
 /* About Page Sections
    =================== */
 
