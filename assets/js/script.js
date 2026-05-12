@@ -28,10 +28,96 @@ document.addEventListener('DOMContentLoaded', function () {
     })();
   }
 
-  // ── Hero canvas: fireflies + shooting stars ───────────────────────────
   const hero = document.querySelector('.hero');
   if (!hero) return;
 
+  // ── WebGL fractal zoom (Mandelbrot · Seahorse Valley) ─────────────────
+  const fCanvas = document.createElement('canvas');
+  fCanvas.setAttribute('aria-hidden', 'true');
+  fCanvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;mix-blend-mode:screen;';
+  hero.insertBefore(fCanvas, hero.firstChild);
+
+  const gl = fCanvas.getContext('webgl');
+  if (gl) {
+    const vs = `attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}`;
+
+    // Mandelbrot with smooth coloring and a blue cosine palette.
+    // Zooms into Seahorse Valley at (-0.7436, 0.1318).
+    const fs = `
+precision highp float;
+uniform vec2 u_res;
+uniform float u_zoom;
+
+void main(){
+  vec2 center = vec2(-0.7436447860, 0.1318252536);
+  vec2 c = (gl_FragCoord.xy - u_res * 0.5) / (min(u_res.x, u_res.y) * 0.5 * u_zoom) + center;
+  vec2 z = vec2(0.0);
+  float i = 0.0;
+  for(int n = 0; n < 200; n++){
+    if(dot(z,z) > 4.0) break;
+    z = vec2(z.x*z.x - z.y*z.y + c.x, 2.0*z.x*z.y + c.y);
+    i += 1.0;
+  }
+  if(i >= 200.0){ gl_FragColor = vec4(0.0, 0.01, 0.04, 1.0); return; }
+  float s = clamp((i - log2(log2(dot(z,z))) + 4.0) / 200.0, 0.0, 1.0);
+  // Blue-teal cosine palette
+  vec3 col = vec3(0.0, 0.25, 0.5) + vec3(0.0, 0.25, 0.5) * cos(6.28318 * (s * 3.0 + vec3(0.0, 0.4, 0.8)));
+  gl_FragColor = vec4(col, 1.0);
+}`;
+
+    function mkShader(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      return s;
+    }
+
+    const prog = gl.createProgram();
+    gl.attachShader(prog, mkShader(gl.VERTEX_SHADER, vs));
+    gl.attachShader(prog, mkShader(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(prog);
+    gl.useProgram(prog);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+    const aPos = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+    const uRes  = gl.getUniformLocation(prog, 'u_res');
+    const uZoom = gl.getUniformLocation(prog, 'u_zoom');
+
+    function resizeFractal() {
+      fCanvas.width  = hero.offsetWidth;
+      fCanvas.height = hero.offsetHeight;
+      gl.viewport(0, 0, fCanvas.width, fCanvas.height);
+      gl.uniform2f(uRes, fCanvas.width, fCanvas.height);
+    }
+    resizeFractal();
+    window.addEventListener('resize', resizeFractal);
+
+    // Zoom continuously, then fade out and reset before float precision breaks down.
+    // MAX_T = 15 → peak zoom ≈ exp(8.25) ≈ 3800×, well within float32 range.
+    let fT = 0, fOpacity = 0.38, fFading = false;
+    const MAX_T = 15;
+
+    (function fractalLoop() {
+      fT += 0.004;
+      if (!fFading && fT > MAX_T - 1.5) {
+        fOpacity = Math.max(0, fOpacity - 0.012);
+        if (fOpacity <= 0) { fT = 0; fFading = true; }
+      } else if (fFading) {
+        fOpacity = Math.min(0.38, fOpacity + 0.006);
+        if (fOpacity >= 0.38) fFading = false;
+      }
+      fCanvas.style.opacity = fOpacity;
+      gl.uniform1f(uZoom, Math.exp(fT * 0.55));
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      requestAnimationFrame(fractalLoop);
+    })();
+  }
+
+  // ── Hero canvas: fireflies + shooting stars ───────────────────────────
   const canvas = document.createElement('canvas');
   canvas.setAttribute('aria-hidden', 'true');
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;';
@@ -64,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   }
 
-  const fireflies = Array.from({ length: 32 }, mkFirefly);
+  const fireflies = Array.from({ length: 0 }, mkFirefly);
 
   function tickFirefly(f) {
     f.vx += (Math.random() - 0.5) * 0.012;
